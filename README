@@ -1,0 +1,27 @@
+
+### Prerequisites
+- Ubuntu 16.04
+- NVIDIA GPU + CUDA CuDNN
+- Python 3
+Please use `pip install -r requirements.txt` to install the dependencies.
+
+## Training
+Download the horse2zebra dataset
+
+bash ./datasets/download_cut_dataset.sh horse2zebra
+
+python train.py \
+--dataroot=datasets/horse2zebra \
+--name=horse2zebra_OSUDL \
+
+- You can use visdom to view the training loss:
+Run `python -m visdom.server` and click the URL http://localhost:8097.
+
+## Inference
+
+- Test the model:
+
+python test.py \
+--dataroot=datasets/horse2zebra \
+--name=horse2zebra_OSUDL \
+
