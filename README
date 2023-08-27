@@ -1,18 +1,35 @@
+# Object-stable unsupervised dual contrastive learning image-to-image translation with query-selected attention and convolutional block attention module
+
+we proposed a dual-learning framework with QS-Attn and convolutional block attention module (CBAM) called object-stable dual contrastive learning generative adversarial network (OS-DCLGAN). In this paper, we utilize a CBAM, which learns what and where to emphasize or suppress, thereby refining intermediate features effectively. This CBAM was integrated before the QS-Attn module to capture significant domain information for I2I translation tasks. The proposed framework outperformed recently introduced approaches in various I2I translation tasks, showing its effectiveness and versatility.
+
+
+<img src="imgs/FIG2.jpg" width="800px"/>
+<img src="imgs/FIG4.jpg" width="800px"/>
+<img src="imgs/FIG5.jpg" width="800px"/>
+
+## Getting Started
+
+
 
 ### Prerequisites
 - Ubuntu 16.04
 - NVIDIA GPU + CUDA CuDNN
-- Python 3
-Please use `pip install -r requirements.txt` to install the dependencies.
+- Python 3 Please use `pip install -r requirements.txt` to install the dependencies.
 
 ## Training
-Download the horse2zebra dataset
-
+- Download the horse2zebra dataset
+```bash
 bash ./datasets/download_cut_dataset.sh horse2zebra
+```
 
+- Train the OSUDL model:
+
+```bash
 python train.py \
 --dataroot=datasets/horse2zebra \
 --name=horse2zebra_OSUDL \
+```
+
 
 - You can use visdom to view the training loss:
 Run `python -m visdom.server` and click the URL http://localhost:8097.
@@ -20,8 +37,26 @@ Run `python -m visdom.server` and click the URL http://localhost:8097.
 ## Inference
 
 - Test the model:
-
+```bash
 python test.py \
 --dataroot=datasets/horse2zebra \
 --name=horse2zebra_OSUDL \
+```
+### Apply a pre-trained DCL model and evaluate
+We provide our pre-trained DCLGAN models for:
+
+Cat <-> Dog , Horse <-> Zebra , CityScapes model
+
+You can test using the parameters in the Pre_train folder.
+
+### Citation
+If you use our code or our results, please consider citing our paper. Thanks in advance!
+```
+@inproceedings{oh2023osudl,
+  title={Object-stable unsupervised dual contrastive learning image-to-image translation with query-selected attention and convolutional block attention module},
+  author={Yunseok Oh and Seonhye Oh and Sangwoo Noh and Hangyu Kim and Hyeon Seo},
+  booktitle={},
+  year={}
+}
+```
 
